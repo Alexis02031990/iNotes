@@ -34,7 +34,6 @@ public class StaffServlet extends HttpServlet {
 		String mode = request.getParameter("mode");
 		StaffDTO dto;
 		int id = 0;
-		
 		boolean ans;
 
 		switch (mode.toUpperCase()) {
@@ -64,7 +63,7 @@ public class StaffServlet extends HttpServlet {
 		    String email = request.getParameter("email");
 		    String posizione = request.getParameter("posizione");
 		    String data_assunzione = request.getParameter("data_assunzione");
-			int numero_telefono = Integer.parseInt(request.getParameter("numeroTelefono"));
+		    int numero_telefono = Integer.parseInt(request.getParameter("numeroTelefono"));
 			String sede = request.getParameter("sede");
 			int ore_settimanali = Integer.parseInt(request.getParameter("ore_settimanali"));
 			String codice_fiscale = request.getParameter("codice_fiscale");
@@ -79,7 +78,7 @@ public class StaffServlet extends HttpServlet {
 			
 		case "UPDATE":
 			
-			id = Integer.parseInt(request.getParameter("id"));
+			id = Integer.parseInt(request.getParameter("idStaff"));
 			nome = request.getParameter("nome");
 		    cognome = request.getParameter("cognome");
 		    email = request.getParameter("email");
