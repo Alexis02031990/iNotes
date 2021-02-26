@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.model.Staff;
-
+import it.contrader.model.User;
 /**
  * 
  * @author Vittorio
@@ -16,9 +16,9 @@ import it.contrader.model.Staff;
 public class StaffDAO implements DAO<Staff> {
 	
 	private final String QUERY_ALL = "SELECT * FROM staff";
-	private final String QUERY_CREATE = "INSERT INTO staff ( nome,cognome,email,posizione,numeroTelefono,dataAssunzione,sede,oreSettimanali, codiceFiscale) VALUES (?,?,?,?,?,?,?,?,?)";
+	private final String QUERY_CREATE = "INSERT INTO staff (idStaff, nome,cognome,email,posizione,numeroTelefono,dataAssunzione,sede,oreSettimanali, codiceFiscale) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM staff WHERE idStaff=?";
-	private final String QUERY_UPDATE = "UPDATE staff SET nome=?,cognome=?, email=?, posizione=?,numeroTelefono=?,dataAssunzione=?,sede=?,oreSettimanali=?,codiceFiscale=? WHERE idStaff=?";
+	private final String QUERY_UPDATE = "UPDATE staff SET idStaff=?,nome=?,cognome=?, email=?, posizione=?,numeroTelefono=?,dataAssunzione=?,sede=?,oreSettimanali=?,codiceFiscale=? WHERE idStaff=?";
 	private final String QUERY_DELETE = "DELETE FROM staff WHERE idStaff=?";
 
 	public StaffDAO() {
@@ -60,16 +60,16 @@ public class StaffDAO implements DAO<Staff> {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {	
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
-			
-			preparedStatement.setString(1, staffToInsert.getNome());
-			preparedStatement.setString(2, staffToInsert.getCognome());
-			preparedStatement.setString(3, staffToInsert.getEmail());
-			preparedStatement.setString(4, staffToInsert.getPosizione());
-			preparedStatement.setInt(5, staffToInsert.getNumeroTelefono());
-			preparedStatement.setString(6, staffToInsert.getDataAssunzione());
-			preparedStatement.setString(7, staffToInsert.getSede());
-			preparedStatement.setInt(8,staffToInsert.getOreSettimanali());
-			preparedStatement.setString(9,staffToInsert.getCodiceFiscale());
+			preparedStatement.setInt(1, staffToInsert.getIdStaff());
+			preparedStatement.setString(2, staffToInsert.getNome());
+			preparedStatement.setString(3, staffToInsert.getCognome());
+			preparedStatement.setString(4, staffToInsert.getEmail());
+			preparedStatement.setString(5, staffToInsert.getPosizione());
+			preparedStatement.setInt(6, staffToInsert.getNumeroTelefono());
+			preparedStatement.setString(7, staffToInsert.getDataAssunzione());
+			preparedStatement.setString(8, staffToInsert.getSede());
+			preparedStatement.setInt(9,staffToInsert.getOreSettimanali());
+			preparedStatement.setString(10,staffToInsert.getCodiceFiscale());
 
 			preparedStatement.execute();
 			return true;
@@ -89,7 +89,9 @@ public class StaffDAO implements DAO<Staff> {
 			preparedStatement.setInt(1, idstaff);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			
+			/*int idStaff, idIterSelettivo,numeroTelefono,oreSettimanali;
+			String nome,cognome,email,posizione,sede;
+			Date dataAssunzione;*/
 
 			int idStaff= resultSet.getInt("idStaff");
 			String  nome= resultSet.getString("nome");
@@ -160,16 +162,17 @@ public class StaffDAO implements DAO<Staff> {
 
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setString(1, staffToUpdate.getNome());
-				preparedStatement.setString(2, staffToUpdate.getCognome());
-				preparedStatement.setString(3, staffToUpdate.getEmail());
-				preparedStatement.setString(4, staffToUpdate.getPosizione());
-				preparedStatement.setInt(5, staffToUpdate.getNumeroTelefono());
-				preparedStatement.setString(6, staffToUpdate.getDataAssunzione());
-				preparedStatement.setString(7, staffToUpdate.getSede());
-				preparedStatement.setInt(8,staffToUpdate.getOreSettimanali());
-				preparedStatement.setString(9,staffToUpdate.getCodiceFiscale());
-				preparedStatement.setInt(10,staffToUpdate.getIdStaff());
+				preparedStatement.setInt(1, staffToUpdate.getIdStaff());
+				preparedStatement.setString(2, staffToUpdate.getNome());
+				preparedStatement.setString(3, staffToUpdate.getCognome());
+				preparedStatement.setString(4, staffToUpdate.getEmail());
+				preparedStatement.setString(5, staffToUpdate.getPosizione());
+				preparedStatement.setInt(6, staffToUpdate.getNumeroTelefono());
+				preparedStatement.setString(7, staffToUpdate.getDataAssunzione());
+				preparedStatement.setString(8, staffToUpdate.getSede());
+				preparedStatement.setInt(9,staffToUpdate.getOreSettimanali());
+				preparedStatement.setString(10,staffToUpdate.getCodiceFiscale());
+				preparedStatement.setInt(11,staffToUpdate.getIdStaff());
 
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
