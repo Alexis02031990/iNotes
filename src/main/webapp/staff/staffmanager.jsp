@@ -67,7 +67,14 @@
 
 
 <form id="floatright" action="StaffServlet?mode=insert" method="post">
-
+<div class="row">
+    <div class="col-25">
+      <label for="staff">idStaff</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="staff" name="idstaff" placeholder="inserisci idstaff">
+    </div>
+  </div>
   <div class="row">
     <div class="col-25">
       <label for="name">Nome</label>
@@ -153,4 +160,3 @@
 <%@ include file="../css/footer.jsp" %>
 </body>
 </html>
-    
