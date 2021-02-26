@@ -50,9 +50,10 @@
 			for (CandidatiDTO c : list) {
 		%>
 		<tr>
-			<td><a href=CandidatiServlet?mode=read&id=<%=c.getIdCandidati() %>>
-					<%=c.getIdStaff()%>
+			<td><a href=CandidatiServlet?mode=read&idCandidati=<%=c.getIdCandidati() %>>
+					<%=c.getIdCandidati()%>
 			</a></td>
+			<td><%=c.getIdStaff() %></td>
 			<td><%=c.getNome() %></td>
 			<td><%=c.getCognome()%></td>
 			<td><%=c.getEmail()%></td>
@@ -69,9 +70,9 @@
 			<td><%=c.getUserType()%></td>
 			
 			
-			<td><a href=CandidatiServlet?mode=read&update=true&id=<%=c.getIdCandidati()%>>Edit</a>
+			<td><a href=CandidatiServlet?mode=read&update=true&idCandidati=<%=c.getIdCandidati()%>>Edit</a>
 			</td>
-			<td><a href=CandidatiServlet?mode=delete&id=<%=c.getIdCandidati()%>>Delete</a>
+			<td><a href=CandidatiServlet?mode=delete&idCandidati=<%=c.getIdCandidati()%>>Delete</a>
 			</td>
 
 		</tr>
@@ -83,12 +84,12 @@
 
 
 <form id="floatright" action="CandidatiServlet?mode=insert" method="post">
-  <div class="row">
+<div class="row">
     <div class="col-25">
-      <label for="idstaff">idStaff</label>
+     <label for="pass">idStaff</label>
     </div>
     <div class="col-75">
-      <input type="text" id="idstaff" name="IdStaff" placeholder="inserisci idStaff">
+      <input type="text" id="idStaff" name="idStaff" placeholder="inserisci id staff"> 
     </div>
   </div>
   <div class="row">
@@ -96,7 +97,7 @@
      <label for="pass">nome</label>
     </div>
     <div class="col-75">
-      <input type="text" id="pass" name="Nome" placeholder="inserisci Nome"> 
+      <input type="text" id="nome" name="nome" placeholder="inserisci Nome"> 
     </div>
   </div>
   
@@ -105,7 +106,7 @@
       <label for="cognome">Cognome</label>
     </div>
     <div class="col-75">
-      <input type="text" id="cognome" name="Cognome" placeholder="inserisci Cognome">
+      <input type="text" id="cognome" name="cognome" placeholder="inserisci Cognome">
     </div>
   </div>
   <div class="row">
@@ -113,7 +114,7 @@
      <label for="pass">Email</label>
     </div>
     <div class="col-75">
-      <input type="text" id="pass" name="Email" placeholder="inserisci Email"> 
+      <input type="text" id="email" name="email" placeholder="inserisci Email"> 
     </div>
   </div>
   
@@ -123,7 +124,7 @@
       <label for="luogo">Luogo di Provenienza</label>
     </div>
     <div class="col-75">
-      <input type="text" id="luogo" name="luogo di Provenienza" placeholder="inserisci luogoProvenienza">
+      <input type="text" id="luogo" name="luogoProvenienza" placeholder="inserisci luogoProvenienza">
     </div>
   </div>
   <div class="row">
@@ -131,7 +132,7 @@
      <label for="pass">Numero di Telefono</label>
     </div>
     <div class="col-75">
-      <input type="text" id="pass" name="Numero di Telefono" placeholder="inserisci il numero di Telefono"> 
+      <input type="text" id="numero" name="numeroTelefono" placeholder="inserisci il numero di Telefono"> 
     </div>
   </div>
  
@@ -141,7 +142,7 @@
       <label for="titolo">Titolo di Studio</label>
     </div>
     <div class="col-75">
-      <input type="text" id="titolo" name="Titolo di Studio" placeholder="inserisci titolo di Studio">
+      <input type="text" id="titolo" name="titoloStudio" placeholder="inserisci titolo di Studio">
     </div>
   </div>
   <div class="row">
@@ -149,7 +150,7 @@
      <label for="pass">Titolo di Laurea</label>
     </div>
     <div class="col-75">
-      <input type="text" id="pass" name="Titolo di Laurea" placeholder="inserisci titolo di Laurea"> 
+      <input type="text" id="titl" name="titoloLaurea" placeholder="inserisci titolo di Laurea"> 
     </div>
   </div>
   
@@ -158,7 +159,7 @@
       <label for="date">Data di Candidatura</label>
     </div>
     <div class="col-75">
-      <input type="text" id="date" name="Data di Candidatura" placeholder="inserisci data di Candidatura">
+      <input type="text" id="date" name="dataCandidatura" placeholder="inserisci data di Candidatura">
     </div>
   </div>
   <div class="row">
@@ -166,46 +167,66 @@
      <label for="pass">Range di candidatura</label>
     </div>
     <div class="col-75">
-      <input type="text" id="pass" name="Range di candidatura" placeholder="inserisci Range di candidatura"> 
+      <input type="text" id="range" name="rangeCandidatura" placeholder="inserisci Range di candidatura"> 
     </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-25">
+      <label for="type">Ha gia' fatto il colloquio?</label>
+    </div>
+   		 <div class="col-75">
+ 			<select id="coll" name="colloquioConoscitivo">
+  				<option value="true">SI</option>
+  				<option value="false">NO</option>
+ 
+			</select>
+    	</div>
   </div>
   
  
-  
-   <div class="row">
-    <div class="col-25">
-      <label for="coll">Colloquio conoscitivo</label>
-    </div>
-    <div class="col-75">
-      <input type="text" id="coll" name="Colloquio Conoscitivo" placeholder="Hao gia' fatto il colloquio? (S/N)">
-    </div>
-  </div>
   <div class="row">
     <div class="col-25">
      <label for="pass">Candidatura</label>
     </div>
     <div class="col-75">
-      <input type="text" id="pass" name="Candidato tramite" placeholder="Come ci hai conosciuto?"> 
+      <input type="text" id="cand" name="candidatiTramite" placeholder="Come ci hai conosciuto?"> 
     </div>
   </div>
   
-   <div class="row">
+    <div class="row">
     <div class="col-25">
-      <label for="ido">Idoneita</label>
+      <label for="type">Idoneita</label>
     </div>
-    <div class="col-75">
-      <input type="text" id="ido" name="Idoneita" placeholder="Il candidato e' idoneo? (S/N)">
-    </div>
+   		 <div class="col-75">
+ 			<select id="coll" name="idoneita" placeholder="Il candidato e' idoneo?">
+  				<option value="true">SI</option>
+  				<option value="false">NO</option>
+ 
+			</select>
+    	</div>
   </div>
+  
   <div class="row">
     <div class="col-25">
      <label for="pass">Codice fiscale</label>
     </div>
     <div class="col-75">
-      <input type="text" id="pass" name="Codice fiscale" placeholder="inserisci il codice fiscale"> 
+      <input type="text" id="cod" name="codiceFiscale" placeholder="inserisci il codice fiscale"> 
     </div>
   </div>
-  
+   <div class="row">
+    <div class="col-25">
+      <label for="type">Usertype</label>
+    </div>
+   		 <div class="col-75">
+ 			<select id="type" name="usertype">
+  				<option value="ADMIN">ADMIN</option>
+  				<option value="USER">USER</option>
+ 
+			</select>
+    	</div>
+  </div>
       <button type="submit" >Insert</button>
 </form>
 
