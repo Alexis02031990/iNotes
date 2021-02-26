@@ -77,4 +77,3 @@
 <%@ include file="../css/footer.jsp" %>
 </body>
 </html>
-    
