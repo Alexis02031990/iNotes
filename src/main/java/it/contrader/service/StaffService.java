@@ -9,7 +9,7 @@ import it.contrader.model.Staff;
  * 
  * @author Vittorio
  *
- *Grazie all'ereditariet  mi basta specificare i tipi di questa classe per
+ *Grazie all'ereditarietà mi basta specificare i tipi di questa classe per
  *ereditare i metodi della clase AbstractService. Pertanto la classe risulta meno complicata
  *da scrivere, facendoci risparmiare tempo e fatica!
  */
