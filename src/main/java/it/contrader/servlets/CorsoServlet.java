@@ -31,7 +31,7 @@ public class CorsoServlet extends HttpServlet {
 		Service<CorsoDTO> service = new CorsoService();
 		String mode = request.getParameter("mode");
 		CorsoDTO dto;
-		int id = 0;
+		int idCorso = 0;
 		boolean ans;
 
 		switch (mode.toUpperCase()) {
@@ -42,8 +42,8 @@ public class CorsoServlet extends HttpServlet {
 			break;
 
 		case "READ":
-			id = Integer.parseInt(request.getParameter("idCorso"));
-			dto = service.read(id);
+			idCorso = Integer.parseInt(request.getParameter("idCorso"));
+			dto = service.read(idCorso);
 			request.setAttribute("dto", dto);
 			
 			if (request.getParameter("update") == null) {
@@ -61,14 +61,14 @@ public class CorsoServlet extends HttpServlet {
 			int idIterSelettivo = Integer.parseInt(request.getParameter("idIterSelettivo").toString());
 			String argomentoCorso = request.getParameter("argomentoCorso").toString();
 			int valutazioneComunicazioni = Integer.parseInt(request.getParameter("valutazioneComunicazioni").toString());
-			//int valutazioneIntuitivita = Integer.parseInt(request.getParameter("valutazioneIntuitivita").toString());
+			int valutazioneIntuitivita = Integer.parseInt(request.getParameter("valutazioneIntuitivita").toString());
 			int valutazioneAttitudine = Integer.parseInt(request.getParameter("valutazioneAttitudine").toString());
 			int valutazioneTeamWork = Integer.parseInt(request.getParameter("valutazioneTeamWork").toString());
 			int oreTotali = Integer.parseInt(request.getParameter("oreTotali").toString());
 			int idStaff = Integer.parseInt(request.getParameter("idStaff").toString());
 			String dataInizio = request.getParameter("dataInizio").toString();
 			
-			dto = new CorsoDTO (id, idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni,20, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
+			dto = new CorsoDTO (idCorso, idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni,valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
 			
 			ans = service.insert(dto);
 			
@@ -80,20 +80,20 @@ public class CorsoServlet extends HttpServlet {
 			break;
 			
 		case "UPDATE":
-			id = Integer.parseInt(request.getParameter("idCorso").toString());
+			
 			idCandidato = Integer.parseInt(request.getParameter("idCandidato").toString());
 			idIterSelettivo = Integer.parseInt(request.getParameter("idIterSelettivo").toString());
 			argomentoCorso = request.getParameter("argomentoCorso").toString();
 			valutazioneComunicazioni = Integer.parseInt(request.getParameter("valutazioneComunicazioni").toString());
-			//valutazioneIntuitivita = Integer.parseInt(request.getParameter("valutazioneIntuitivita").toString());
+			valutazioneIntuitivita = Integer.parseInt(request.getParameter("valutazioneIntuitivita").toString());
 			valutazioneAttitudine = Integer.parseInt(request.getParameter("valutazioneAttitudine").toString());
 			valutazioneTeamWork = Integer.parseInt(request.getParameter("valutazioneTeamWork").toString());
 			oreTotali = Integer.parseInt(request.getParameter("oreTotali").toString());
 			idStaff = Integer.parseInt(request.getParameter("idStaff").toString());
 			dataInizio = request.getParameter("dataInizio").toString();
+			idCorso = Integer.parseInt(request.getParameter("idCorso").toString());
 			
-			
-			dto = new CorsoDTO (id, idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, 20, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
+			dto = new CorsoDTO (idCorso, idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
 			
 			ans = service.update(dto);
 			
@@ -103,8 +103,8 @@ public class CorsoServlet extends HttpServlet {
 			break;
 
 		case "DELETE":
-			id = Integer.parseInt(request.getParameter("idCorso"));
-			ans = service.delete(id);
+			idCorso = Integer.parseInt(request.getParameter("idCorso"));
+			ans = service.delete(idCorso);
 			request.setAttribute("ans", ans);
 			updateList(request);
 			getServletContext().getRequestDispatcher("/corso/corsomanager.jsp").forward(request, response);
