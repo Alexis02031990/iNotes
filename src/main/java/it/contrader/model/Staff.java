@@ -164,10 +164,10 @@ public class Staff {
 
 	@Override
 	public String toString() {
-		return "idStaff=" + idStaff + ", idIterSelettivo=" + ", nome=" + nome + ", cognome="
+		return "Staff [idStaff=" + idStaff + ", idIterSelettivo=" + ", nome=" + nome + ", cognome="
 				+ cognome + ", email=" + email + ", posizione=" + posizione + ", numeroTelefono=" + numeroTelefono
 				+ ", dataAssunzione=" + dataAssunzione + ", sede=" + sede + ", oreSettimanali=" + oreSettimanali
-				+ ", codiceFiscale=" + codiceFiscale;
+				+ ", codiceFiscale=" + codiceFiscale + "]";
 	}
 	
 	
