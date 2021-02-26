@@ -67,7 +67,7 @@ public class CandidatiServlet extends HttpServlet {
 
 		case "INSERT":
 			
-			//int idStaff = Integer.parseInt(request.getParameter("idStaff").toString());
+			int idStaff = Integer.parseInt(request.getParameter("idStaff").toString());
 			String nome = request.getParameter("nome").toString();
 			String cognome = request.getParameter("cognome").toString();
 			String email = request.getParameter("email").toString();
@@ -77,13 +77,13 @@ public class CandidatiServlet extends HttpServlet {
 			String titoloLaurea = request.getParameter("titoloLaurea").toString();	
 			String dataCandidatura = request.getParameter("dataCandidatura").toString();
 			String rangeCandidatura = request.getParameter("rangeCandidatura").toString();
-			boolean colloquioConoscitivo = Boolean.parseBoolean(request.getParameter("colloquioConoscitivo ").toString());
+			boolean colloquioConoscitivo = Boolean.parseBoolean(request.getParameter("colloquioConoscitivo").toString());
 			String candidatiTramite = request.getParameter("candidatiTramite").toString();
 			boolean idoneita = Boolean.parseBoolean(request.getParameter("idoneita").toString());
 			String codiceFiscale = request.getParameter("codiceFiscale").toString();
-			String userType = request.getParameter("userType").toString();
+			String userType = request.getParameter("usertype").toString();
 			
-			dto = new CandidatiDTO (id, nome, cognome, email, luogoProvenienza, numeroTelefono, titoloStudio,
+			dto = new CandidatiDTO (id,idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono, titoloStudio,
 					titoloLaurea, dataCandidatura, rangeCandidatura, colloquioConoscitivo, candidatiTramite,
 					idoneita, codiceFiscale, userType);
 			ans = service.insert(dto);
@@ -94,7 +94,8 @@ public class CandidatiServlet extends HttpServlet {
 			
 		case "UPDATE":
 			
-			 id = Integer.parseInt(request.getParameter("idStaff").toString());
+			
+			 idStaff = Integer.parseInt(request.getParameter("idStaff").toString());
 			 nome = request.getParameter("nome").toString();
 			 cognome = request.getParameter("cognome").toString();
 			 email = request.getParameter("email").toString();
@@ -104,18 +105,18 @@ public class CandidatiServlet extends HttpServlet {
 			 titoloLaurea = request.getParameter("titoloLaurea").toString();	
 			 dataCandidatura = request.getParameter("dataCandidatura").toString();
 			 rangeCandidatura = request.getParameter("rangeCandidatura").toString();
-			 colloquioConoscitivo = Boolean.parseBoolean(request.getParameter("colloquioConoscitivo ").toString());
+			 colloquioConoscitivo = Boolean.parseBoolean(request.getParameter("colloquioConoscitivo").toString());
 			 candidatiTramite = request.getParameter("candidatiTramite").toString();
 			 idoneita = Boolean.parseBoolean(request.getParameter("idoneita").toString());
 			 codiceFiscale = request.getParameter("codiceFiscale").toString();
-			 userType = request.getParameter("userType").toString();
+			 userType = request.getParameter("usertype").toString();
 			
-			 int idCandidati = Integer.parseInt(request.getParameter("idCandidati"));
 			 
-			dto = new CandidatiDTO (idCandidati, id, nome, cognome, email, luogoProvenienza, numeroTelefono, titoloStudio,
+			 
+			dto = new CandidatiDTO (id, idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono, titoloStudio,
 					titoloLaurea, dataCandidatura, rangeCandidatura, colloquioConoscitivo, candidatiTramite,
 					idoneita, codiceFiscale, userType);
-		ans = service.update(dto);
+			ans = service.update(dto);
 			updateList(request);
 			getServletContext().getRequestDispatcher("/candidati/candidatimanager.jsp").forward(request, response);
 			break;
