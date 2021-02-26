@@ -51,7 +51,5 @@ public class StaffConverter implements Converter<Staff, StaffDTO>   {
 		}
 		return userDTOList;
 	}
-
-	
 	
 }
