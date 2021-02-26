@@ -1,73 +1,34 @@
-    <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.List"
-	import="it.contrader.dto.StaffDTO"%>
+   <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="it.contrader.dto.StaffDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <link href="../css/vittoriostyle.css" rel="stylesheet">
-<title>Staff Manager</title>
+<title>Edit Staff</title>
 </head>
 <body>
 <%@ include file="../css/header.jsp" %>
-
 <div class="navbar">
-  <a  href="homeadmin.jsp">Home</a>
+  <a href="homeadmin.jsp">Home</a>
   <a class="active" href="StaffServlet?mode=stafflist">Staff</a>
   <a href="LogoutServlet" id="logout">Logout</a>
 </div>
-<div class="main">
-	<%
-		List<StaffDTO> list = (List<StaffDTO>) request.getAttribute("list");
-	%>
-
 <br>
+<div class="main">
 
-	<table>
-		<tr>
-			    <th>IdStaff</th>
-		        <th>Nome</th>
-		        <th>Cognome</th>
-                <th>Email</th>
-                <th>Posizione</th>
-                <th>Numero_telefono</th>
-                <th>data_assunzione</th>
-                <th>Sede</th>
-                <th>OreSettimanali</th>
-                <th>CodiceFiscale</th>
-			<th></th>
-			<th></th>
-		</tr>
-		<%
-			for (StaffDTO u : list) {
-		%>
-		<tr>
-			<td><a href=StaffServlet?mode=read&idStaff=<%=u.getIdStaff()%>><%=u.getIdStaff()%>  </a></td>
-			<td><%=u.getNome()%></td>
-			<td><%=u.getCognome()%></td>
-			<td><%=u.getEmail()%></td>
-			<td><%=u.getPosizione()%></td>
-			<td><%=u.getNumero_telefono()%></td>
-			<td><%=u.getData_assunzione()%></td>
-			<td><%=u.getSede()%></td>
-			<td><%=u.getOre_settimanali()%></td>
-			<td><%=u.getCodice_fiscale()%></td>
-			
-			<td><a href=StaffServlet?mode=read&update=true&idStaff=<%=u.getIdStaff()%>>Edit</a>
-			</td>
-			<td><a href=StaffServlet?mode=delete&idStaff=<%=u.getIdStaff()%>>Delete</a>
-			</td>
-
-		</tr>
-		<%
-			}
-		%>
-	</table>
+<%StaffDTO u = (StaffDTO) request.getAttribute("dto");%>
 
 
-
-<form id="floatright" action="StaffServlet?mode=insert" method="post">
-
+<form id="floatleft" action="StaffServlet?mode=update&id=<%=u.getIdStaff()%>" method="post">
+<div class="row">
+    <div class="col-25">
+      <label for="staff">idStaff</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="staff" name="idstaff" placeholder="inserisci idstaff">
+    </div>
+  </div>
   <div class="row">
     <div class="col-25">
       <label for="name">Nome</label>
@@ -107,7 +68,7 @@
      <label for="num">Numero</label>
     </div>
     <div class="col-75">
-      <input type="number" id="num" name="numero" placeholder="inserisci numero"> 
+      <input type="text" id="num" name="numero" placeholder="inserisci numero"> 
     </div>
   </div>
   
@@ -145,12 +106,12 @@
     </div>
   </div>
   
-      <button type="submit" >Insert</button>
+      <button type="submit" >Edit</button>
 </form>
 
+	
 </div>
 <br>
-<%@ include file="../css/footer.jsp" %>
+<%@ include file="../css/footer.jsp" %>	
 </body>
 </html>
-    
