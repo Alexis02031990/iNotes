@@ -4,6 +4,9 @@ import java.sql.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.catalina.Contained;
+
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.model.Corso;
 
@@ -15,6 +18,20 @@ import it.contrader.model.Corso;
  *Per i dettagli della classe vedi Guida sez 6: DAO
  */
 public class CorsoDAO implements DAO<Corso>{
+	
+	public static interface CONST {
+		String ID_CORSO = "idCorso";
+		String ID_CANDIDATO = "idCandidato";
+		String ID_ITER_SELETTIVO = "idIterSelettivo";
+		String ARGOMENTO_CORSO = "argomentoCorso";
+		String VALUTAZIONE_COMUNICAZIONI = "valutazioneComunicazioni";
+		String VALUTAZIONE_INTUITIVITA = "valutazioneIntuitivita";
+		String VALUTAZIONE_ATTITUDINE = "valutazioneAttitudine";
+		String VALUTAZIONE_TEAMWORK = "valutazioneTeamWork";
+		String ORE_TOTALI = "oreTotali";
+		String ID_STAFF = "idStaff";
+		String DATA_INIZIO = "dataInizio";
+	}
 	
 	private final String QUERY_ALL = "SELECT * FROM corso";
 	private final String QUERY_CREATE = "INSERT INTO corso (idCorso, idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
@@ -35,17 +52,17 @@ public class CorsoDAO implements DAO<Corso>{
 			Corso corso;
 			while (resultSet.next()) {
 				
-				int idCorso = resultSet.getInt("idCorso");
-				int idCandidato = resultSet.getInt("idCandidato ");
-				int idIterSelettivo = resultSet.getInt("idIterSelettivo");
-				String argomentoCorso = resultSet.getString("argomentoCorso");
-				int valutazioneComunicazioni = resultSet.getInt("valutazioneComunicazioni ");
-				int valutazioneIntuitivita = resultSet.getInt("valutazioneIntuitivita ");
-				int valutazioneAttitudine = resultSet.getInt("valutazioneAttitudine");
-				int valutazioneTeamWork = resultSet.getInt("valutazioneTeamWork");
-				int oreTotali = resultSet.getInt("oreTotal");
-				int idStaff = resultSet.getInt("idStaff");
-				String dataInizio = resultSet.getString("dataInizioe");
+				int idCorso = resultSet.getInt(CONST.ID_CORSO);
+				int idCandidato = resultSet.getInt(CONST.ID_CANDIDATO);
+				int idIterSelettivo = resultSet.getInt(CONST.ID_ITER_SELETTIVO);
+				String argomentoCorso = resultSet.getString(CONST.ARGOMENTO_CORSO);
+				int valutazioneComunicazioni = resultSet.getInt(CONST.VALUTAZIONE_COMUNICAZIONI);
+				int valutazioneIntuitivita = resultSet.getInt(CONST.VALUTAZIONE_INTUITIVITA);
+				int valutazioneAttitudine = resultSet.getInt(CONST.VALUTAZIONE_ATTITUDINE);
+				int valutazioneTeamWork = resultSet.getInt(CONST.VALUTAZIONE_TEAMWORK);
+				int oreTotali = resultSet.getInt(CONST.ORE_TOTALI);
+				int idStaff = resultSet.getInt(CONST.ID_STAFF);
+				String dataInizio = resultSet.getString(CONST.DATA_INIZIO);
 				
 				corso = new Corso(idCorso, idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
 				
@@ -95,17 +112,17 @@ public class CorsoDAO implements DAO<Corso>{
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			
-			idCorso = resultSet.getInt("idCorso");
-			int idCandidato = resultSet.getInt("idCandidato ");
-			int idIterSelettivo = resultSet.getInt("idIterSelettivo");
-			String argomentoCorso = resultSet.getString("argomentoCorso");
-			int valutazioneComunicazioni = resultSet.getInt("valutazioneComunicazioni ");
-			int valutazioneIntuitivita = resultSet.getInt("valutazioneIntuitivita ");
-			int valutazioneAttitudine = resultSet.getInt("valutazioneAttitudine");
-			int valutazioneTeamWork = resultSet.getInt("valutazioneTeamWork");
-			int oreTotali = resultSet.getInt("oreTotal");
-			int idStaff = resultSet.getInt("idStaff");
-			String dataInizio = resultSet.getString("dataInizioe");
+			idCorso = resultSet.getInt(CONST.ID_CORSO);
+			int idCandidato = resultSet.getInt(CONST.ID_CANDIDATO);
+			int idIterSelettivo = resultSet.getInt(CONST.ID_ITER_SELETTIVO);
+			String argomentoCorso = resultSet.getString(CONST.ARGOMENTO_CORSO);
+			int valutazioneComunicazioni = resultSet.getInt(CONST.VALUTAZIONE_COMUNICAZIONI);
+			int valutazioneIntuitivita = resultSet.getInt(CONST.VALUTAZIONE_INTUITIVITA);
+			int valutazioneAttitudine = resultSet.getInt(CONST.VALUTAZIONE_ATTITUDINE);
+			int valutazioneTeamWork = resultSet.getInt(CONST.VALUTAZIONE_TEAMWORK);
+			int oreTotali = resultSet.getInt(CONST.ORE_TOTALI);
+			int idStaff = resultSet.getInt(CONST.ID_STAFF);
+			String dataInizio = resultSet.getString(CONST.DATA_INIZIO);
 			
 			Corso corso = new Corso (idCorso, idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
 			corso.setIdCorso(resultSet.getInt("IdCorso"));
